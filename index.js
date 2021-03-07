@@ -10,8 +10,12 @@ app.get('/', function (req, res) {
 })
 
 venom
-  .create()
-  .then((client) => start(client))
+  .create( 'session',
+   (base64Qrimg, asciiQR, attempts) => {}, 
+   (statusSession, session) => {}, 
+   { useChrome: false, browserArgs: ['--no-sandbox'] } )
+   .then((client) => start(client))
+ 
   .catch((erro) => {
     console.log(erro);
   });
