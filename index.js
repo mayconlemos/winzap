@@ -1,38 +1,59 @@
+
 const express = require('express')
+const cors = require('cors');
 const app = express()
-// Supports ES6
-// import { create, Whatsapp } from 'venom-bot';
-const venom = require('venom-bot');
-const port = process.env.PORT || 5000
- 
-app.get('/', function (req, res) {
+const routes = require('./routes/routes.js');
+const path = require('path')
+var bodyParser = require('body-parser')
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
+const PORT = process.env.PORT || 5000
+
+app.use(cors());
+
+
+//SocketIo
+app.use((req, res, next) => {
+  req.io = io;
+  next();
+});
+
+io.on('connection', sock => {
+  console.log(`ID: ${sock.id} entrou`)
+
+  sock.on('event', data => {
+      console.log(data)
+  });
+
+  sock.on('disconnect', () => {
+      console.log(`ID: ${sock.id} saiu`)
+  });
+});
+
+
+// parse application/json
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
+
+
+
+//rota para teste
+app.get('/test', function (req, res) {
   res.send('Hello World')
-})
+});
 
-venom
-  .create( 'session',
-   (base64Qrimg, asciiQR, attempts) => {}, 
-   (statusSession, session) => {}, 
-   { useChrome: false, browserArgs: ['--no-sandbox'] } )
-   .then((client) => start(client))
- 
-  .catch((erro) => {
-    console.log(erro);
-  });
 
-function start(client) {
-  client.onMessage((message) => {
-    if (message.body === 'Hi' && message.isGroupMsg === false) {
-      client
-        .sendText(message.from, 'Welcome Venom 🕷')
-        .then((result) => {
-          console.log('Result: ', result); //return object success
-        })
-        .catch((erro) => {
-          console.error('Error when sending: ', erro); //return object error
-        });
-    }
-  });
-}
- 
-app.listen(port, "0.0.0.0")
+//rota para pagina principal
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname,  'index.html'));
+});
+
+
+//solicitando as rotas, para execução das funções
+app.use('/',routes);
+
+
+//Escutando Porta Aleatória e IP Publico, para deploy 
+server.listen(PORT, "0.0.0.0")
+console.log(`O servidor está rodando na porta  ${PORT} `)
