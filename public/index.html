@@ -30,10 +30,10 @@
             <div class="row">
                 <div class="col  mt-5 mb-5">
 
-                    <h2>Entre com nome da sua sessão do whatsapp</h2>
+                    <h4>Digite seu nome e envie o qr-code lido para o sistema interligar com seu Whatsapp</h4>
 
                     
-                    <input name="session" v-model="session" id="session" autocomplete="off" class="form-control session " type="text" >
+                    <input name="session" v-model="session" id="session" autocomplete="off" class="form-control session " type="text"  >
                    
 
                 </div>
@@ -64,13 +64,15 @@
             <div class="row">
                 <div class="col  ">
                     
-                    <h3>Entre com números</h3> <hr> <br>
-                    <textarea class="form-control  " placeholder="Entre com os numeros" id="tel" type="textarea"> </textarea> <br>
+                    <h2>Entre com números</h2> <hr> <br>
+                   
+                    
+                    <textarea class="form-control  " placeholder="*utilize ; para separar os numeros. Exemplo: 21998775544;21998775544" id="tel" type="textarea"> </textarea> <br>
 
                 </div>
                 <div class="col">
                     
-                    <h3>Números Adicionados</h3> <hr> <br>
+                    <h2>Números Adicionados</h2> <hr> <br>
                     <textarea  class="form-control" disabled>{{numero}}</textarea>
                 </div>
             </div> 
@@ -92,7 +94,7 @@
             <div v-if="currentstep == 3">
             <div class="row">
                 <div class="col">
-                    <h3>Entre Com Texto</h3>
+                    <h2>Entre Com Texto</h2>
                     <div class="form-floating mb-5">
                         <textarea class="form-control" v-model="texto" 
                             id="floatingTextarea"></textarea>
@@ -139,6 +141,8 @@
          console.log(session)
          await axios.post('/iniciar-sessao', params)
      }
+     
+   
  
      async function alterSession(session) {
          if (!session) {
@@ -165,6 +169,7 @@
             alert('Whatsapp fechado com sucesso')
         }
     })
+  
  
   socket.on('qrCode', (qrCode) => {
         let session = document.getElementById('session').value
@@ -184,7 +189,7 @@
     new Vue({
         el: "#vue",
         data: {
-            numero: ['980807127'],
+            numero: ['21998775544'],
             novonumero: '',
             texto: '',
             session: '',

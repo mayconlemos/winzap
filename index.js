@@ -8,7 +8,7 @@ var bodyParser = require('body-parser')
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 4000
 
 app.use(cors());
 
