@@ -8,7 +8,7 @@ var bodyParser = require('body-parser')
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 
 app.use(cors());
 
@@ -45,8 +45,10 @@ app.get('/test', function (req, res) {
 
 
 //rota para pagina principal
+
+
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname,  'index.html'));
+  res.sendFile(path.join(__dirname,  '/public/index.html'));
 });
 
 
