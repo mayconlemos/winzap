@@ -10,12 +10,15 @@ async function opendata(req, res,sessionName) {
 
     clientsArray[sessionName] = await venom
     
-    .create( sessionName,
-     ( base64Qrimg, asciiQR, attempts) => {
+    .create( sessionName, ( base64Qrimg, asciiQR, attempts) => {
+        
         exportQR(req, res, base64Qrimg, sessionName + '.png', sessionName)
+        
      }, 
-     (statusSession, session) => {}, 
-     { useChrome: false, browserArgs: ['--no-sandbox'] } )   
+
+     (statusSession, session) => {
+   
+     }, { useChrome: false, browserArgs: ['--no-sandbox'] } )   
 
     .catch((erro) => {
       console.log(erro);

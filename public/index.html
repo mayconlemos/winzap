@@ -7,7 +7,8 @@
     <title>MyZap</title>
     <!-- bootstrap5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-   
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="estilo.css">
 </head>
 
@@ -32,18 +33,19 @@
                     <h2>Entre com nome da sua sessão do whatsapp</h2>
 
                     
-                    <input name="session" v-model="session" id="session" autocomplete="off" class="form-control " type="text" >
+                    <input name="session" v-model="session" id="session" autocomplete="off" class="form-control session " type="text" >
                    
 
                 </div>
 
                 <div class="col  mt-5 mb-5">
-                   <h2>Código QR</h2>
+                  
                    <img id="image"
-                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATYAAACjCAMAAAA3vsLfAAAArlBMVEX////6+vr+/Pz87OL89PTl6NbM1c386Nqwwdf2l3eYlcv8//+istT19fH9lam4xNexvILt8OX4r3bO1eStuXz98Ov9i6Lh5eXh5+34sXupq9Kwu9WjtNLM07v64uH219L2kXH2oZP7nq6hnc7Ey6j66ur84c/3pmX5y6/5u4z3rob5wJb7sbj4xsi1tNayvIrf3sb71b33p4v1nYD6vK32tKH1zcP4s6r1w7T8v8m6ft0sAAACf0lEQVR4nO3aWXOiQBSGYRraRAWURVwTjdn3TGaf///H5jTQgxpHkytC+T5WCTRcdH11enFxHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAw7lu3T1oIldrcvuAMMwPWuQnVN17hNHg1BxtbNrzyG2/eFDkVsYmqXm67j41QPgSRYPYxuZKalTbe1xGUXRpY8sktazuHjVCLLFFbrmSUmz7Xb1em4i+DAaRKldQO7PpjPD+5yZJbm4lntbLqW3KMpNadixq7NjndpdMJsnk7bppQjv2auhQM+h7k9vDZrOXx8YgXaHWrvRdkiT3Om9X9pab11qRmlp//mBtxjC/fXjdbM+8jA3vOhOPKmtIKd/3Hcc31+ZlbhS3ipbq8YOvOVUMPBOL71/N57q6Ls/yg6tDvf74YbNzmBwXXzudzrfv2rbb2nKUG7cM7djGN2P70JSDT96zs45x9qNqt7EVqbVaqykftpVqWxa5/fTL6yq2sEgtptqsKhxHX/9aLn9nvg2rik2FWdyKQ1cxt5VWl0azkPqOXUBXApU3+WhfZslKus2Wz+xKK4blTvPH4fB8Y2+rjgQ/x+zwNOz1eltjOxrV06MmWJjUhk+bzSNy28mk1lvIyfhfwSnz61+Y51Zfvz65x975HwlMT7tT29Rvp+aL3hHVttdzt3she43ZTJnY2v26+9MMabdrqi0NgjSPrU2dvcdUYpPAZkEwk1lOYuuz+dhvfCHFJsPzJAhOZFYz5cZWd7+xzGxjx8bmhJLbuO4+NYA7e87/ctQPgnwxCNO03g41S7Ek4IPcPksBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADTeX0vjGCUN/+EfAAAAAElFTkSuQmCC"
-                   draggable="false" alt="qr-code">
+                   src="https://www.allgeo.com/newtemp/images/t3/qr3.gif"
+                   draggable="false" alt="qr-code" class="qrcode">
                 </div>
             </div>
+            
            
                 <button class="btn shadow p-3  position-absolute bottom-0 start-0" @click="lastStep()"  disabled>Voltar</button>
                 <button id="send-btn" onclick="alterSession(document.getElementById('session').value)" class="btn btn-primary position-absolute bottom-0 end-50">Enviar</button>
@@ -90,8 +92,9 @@
             <div v-if="currentstep == 3">
             <div class="row">
                 <div class="col">
+                    <h3>Entre Com Texto</h3>
                     <div class="form-floating mb-5">
-                        <textarea class="form-control" v-model="texto" placeholder="Entre Com Texto"
+                        <textarea class="form-control" v-model="texto" 
                             id="floatingTextarea"></textarea>
                     </div>
 
@@ -110,7 +113,9 @@
            
             </div>
 
-    </div>
+      </div>
+       
+          
     </div>
 
 
